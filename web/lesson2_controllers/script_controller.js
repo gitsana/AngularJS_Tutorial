@@ -1,12 +1,31 @@
+(function () { // using IFFE pattern
 
-var MainController = function ($scope) {
+    // module definition in its own file (app.js)
+    // STEP 1 - create the module with a name
+    var app = angular.module("githubViewer", []);
 
-    var person = {
-        firstName: "Scott",
-        lastName: "Allen",
-        imageSrc: "http://odetocode.com/Images/scott_allen_2.jpg"
+    // controller definitions, each in their own js files (mainController.js, mainController2.js)
+    var MainController = function ($scope, $http) {
+
+        var onUserComplete = function (response) {
+            $scope.user = response.data;    // Angular is automatically converting this data from JSON array to JS object
+        };
+
+        var onError = function (reason) {
+            $scope.error = "Could not fetch the user";
+        };
+
+        $http.get("https://api.github.com/users/gitsana")
+            .then(onUserComplete, onError);     // ".then" is the promise, and it only invokes the first parameter if it's SUCCESSFUL
+                                                // invoke second parameter if there's an error. "onError" is optional
+
+        $scope.message = "Hello, Angular!";
     };
 
-    $scope.message = "Hello, Angular!";
-    $scope.person = person;
-};
+    // STEP 2 - register the controllers in the module
+    app.controller("MainController", MainController);
+
+    // STEP 3 - [put ng-app="githubViewer" into HTML page]
+
+}());
+

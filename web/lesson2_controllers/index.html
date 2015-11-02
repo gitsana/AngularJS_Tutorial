@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="githubViewer">
 <head>
     <meta charset="UTF-8">
     <title>Controllers</title>
@@ -13,10 +13,15 @@
     <div>Message length: {{ message.length }}</div>
 
     <div>
-        <div>First name: {{ person.firstName }} </div>
-        <div>Last name: {{person.lastName }}</div>
+        {{error}}
+    </div>
+
+    <div>
+        <b>From Github API</b>
+        <div><b>Name: </b> {{ user.name }}</div>
+        <div><b>Location: </b>{{ user.location }}</div>
         <div>
-            <img ng-src="{{ person.imageSrc }}" title="{{ person.firstName }} {{ person.lastName }}">
+            <img ng-src="{{ user.avatar_url }}" title="{{ user.name }}">
         </div>
     </div>
 
