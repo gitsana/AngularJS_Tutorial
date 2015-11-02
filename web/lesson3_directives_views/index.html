@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="githubViewer">
+<head>
+    <meta charset="UTF-8">
+    <title>Controllers</title>
+    <!--<script src="/resource/angular.js"></script>-->
+    <script src="/resource/angular_1_2_25.js"></script>
+    <script src="script_controller.js"></script>
+</head>
+<body ng-controller="MainController">
+
+    <h2>{{ message }}</h2>
+    <div>Message length: {{ message.length }}</div><br>
+
+    <div>
+        {{error}}
+    </div>
+
+    {{ username }}
+    <form name="searchUser" ng-submit="search(username)">
+        <input type="search" required placeholder="Username to find" ng-model="username">
+        <input type="submit" value="Search"> <!-- don't actually need this username param bc of ng-model. ALso could user ng-click here instead of
+                                                  ng-submit above if not for the "required" HTML word for error-checking in the search input-->
+    </form>
+    {{ username.length }}
+
+    <div>
+        <h3>{{ user.name }}</h3>
+        <img ng-src="{{ user.avatar_url }}" title="{{ user.name }}">
+    </div>
+
+</body>
+</html>

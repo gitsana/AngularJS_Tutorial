@@ -18,11 +18,14 @@
             $scope.error = "Could not fetch the user";
         };
 
-        $http.get("https://api.github.com/users/gitsana")
-            .then(onUserComplete, onError);     // ".then" is the promise, and it only invokes the first parameter if it's SUCCESSFUL
-                                                // invoke second parameter if there's an error. "onError" is optional
+        $scope.search = function(username) {    // getting username from the user in the view (html page)
+            $http.get("https://api.github.com/users/" + username)
+                .then(onUserComplete, onError);     // ".then" is the promise, and it only invokes the first parameter if it's SUCCESSFUL
+                                                    // invoke second parameter if there's an error. "onError" is optional
+        };
 
-        $scope.message = "Hello, Angular!";
+        $scope.username = "angular";
+        $scope.message = "GitHub Viewer";
     };
 
     // STEP 2 - register the controllers in the module
