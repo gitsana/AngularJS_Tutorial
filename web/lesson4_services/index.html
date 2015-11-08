@@ -21,7 +21,7 @@
     <input type="submit" value="Search"> <!-- don't actually need this username param bc of ng-model. ALso could user ng-click here instead of
                                                   ng-submit above if not for the "required" HTML word for error-checking in the search input-->
 </form>
-
+{{ countdown }}
 <div>
     <h3>{{ user.name }}</h3>
     <img ng-src="{{ user.avatar_url }}" title="{{ user.name }}">
