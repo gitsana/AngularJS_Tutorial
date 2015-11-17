@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Github Viewer</title>
     <!--<script src="/resource/angular.js"></script>-->
-    <script src="/resource/angular_1_2_25.js"></script>
-    <script src="script_controller.js"></script>
+    <script src="/resource/angular_1_2_25.js"></script> <!-- using older version so tutorials' examples work here -->
+    <script src="script_controller.js"></script> <!-- this one goes first bc module declared in here first -->
+    <script src="githubService.js"></script>
 </head>
 <body ng-controller="MainController">
 

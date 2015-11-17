@@ -6,19 +6,19 @@
     'use strict';
     // module definition in its own file (app.js)
     // STEP 1 - create the module with a name
-    var app = angular.module("githubViewer", []);
+    var app = angular.module("githubViewer", []); // [] = dependencies for this module
 
     // controller definitions, each in their own js files (mainController.js, mainController2.js)
-    var MainController = function ($scope, $http, $interval, $log, $anchorScroll, $location) {
+    var MainController = function ($scope, githubService, $interval, $log, $anchorScroll, $location) { // removed $http
 
-        var onUserComplete = function (response) {
-            $scope.user = response.data;    // Angular is automatically converting this data from JSON array to JS object
-            $http.get($scope.user.repos_url)
+        var onUserComplete = function (data) {
+            $scope.user = data;    // Angular is automatically converting this data from JSON array to JS object
+            githubService.getRepos($scope.user)
                 .then(onRepos, onError);
         };
 
-        var onRepos = function(response) {
-            $scope.repos = response.data;
+        var onRepos = function(data) {
+            $scope.repos = data;
             $location.hash("userDetails"); // this is the id of the HTML tag you want to anchor-scroll to
             $anchorScroll(); // this method can be invoked itself
         };
@@ -42,7 +42,7 @@
 
         $scope.search = function(username) {    // getting username from the user in the view (html page)
             $log.info("We are searching for username: " + username);
-            $http.get("https://api.github.com/users/" + username)
+            githubService.getUser(username)
                 .then(onUserComplete, onError);     // ".then" is the promise, and it only invokes the first parameter if it's SUCCESSFUL. invoke second parameter if there's an error. "onError" is optional
             if(countdownInterval) {
                 $interval.cancel(countdownInterval);
