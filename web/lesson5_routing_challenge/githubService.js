@@ -1,6 +1,7 @@
 (function() { // IFFE
 
     var githubService = function($http) {
+
         var getUser = function(username) {
             return $http.get("https://api.github.com/users/" + username)
                 .then(function (response) {
@@ -21,11 +22,8 @@
         };
     };
 
-    // get ref to githubviewer
-    var module = angular.module("githubViewer"); // no second param of "[]" bc not creating a module, only getting
-    //reference to already existing module, not creating/registering a module
+    var module = angular.module("githubViewer");
 
-    // register the service
     module.factory("githubService", githubService);
 
 }());

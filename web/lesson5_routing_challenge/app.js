@@ -12,6 +12,10 @@
                 templateUrl: "user.html",
                 controller: "UserController"
             })
+            .when("/githubOneRepo/:repoName", {
+                templateUrl: "githubOneRepo.html",
+                controller: "GithubOneRepoController"
+            })
             .otherwise({redirectTo: "/main"});
     });
 

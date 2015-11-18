@@ -27,6 +27,5 @@
 
     app.controller("UserController", UserController);
 
-
 }());
 
